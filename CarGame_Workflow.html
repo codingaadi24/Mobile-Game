@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High-Graphics Car Game Workflow</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #download-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+            transition: background-color 0.2s;
+        }
+
+        #download-btn:hover {
+            background-color: #0056b3;
+        }
+
+        #flowchart-container {
+            width: 800px;
+            background-color: white;
+            padding: 40px;
+            box-sizing: border-box;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
+        .phase {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .phase:last-child {
+            margin-bottom: 0;
+        }
+
+        .phase::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 48px;
+            bottom: -20px;
+            width: 4px;
+            background-color: #e0e0e0;
+            z-index: 1;
+        }
+
+        .phase:last-child::before {
+            display: none;
+        }
+
+        .phase-number {
+            width: 52px;
+            height: 52px;
+            background-color: #007bff;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            border-radius: 50%;
+            z-index: 2;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+            border: 4px solid white;
+        }
+
+        .phase-content {
+            margin-left: 20px;
+            background: #fdfdfd;
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .phase-content h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 20px;
+            color: #222;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .phase-content h2 span.time {
+            color: #007bff;
+            font-size: 14px;
+            font-weight: 600;
+            background: #e6f2ff;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .phase-content ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .phase-content li {
+            margin-bottom: 6px;
+        }
+
+        .total-time {
+            margin-top: 40px;
+            text-align: center;
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="download-btn">📥 Generate & Download PDF</button>
+
+    <div id="flowchart-container">
+        <h1>High-Graphics Car Game</h1>
+        <p class="subtitle">Development Workflow & Timeline (Unity)</p>
+
+        <div class="phase">
+            <div class="phase-number">1</div>
+            <div class="phase-content">
+                <h2>Preparation & Setup <span class="time">1 - 2 Weeks</span></h2>
+                <ul>
+                    <li>Install Unity Hub, Unity Editor (LTS), Android SDK, NDK, and OpenJDK.</li>
+                    <li>Install and configure Blender for 3D modeling.</li>
+                    <li>Create a new Mobile-Optimized Universal Render Pipeline (URP) project.</li>
+                    <li>Model the 3D car and design the game map/environment in Blender.</li>
+                    <li>Source audio and additional assets.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-number">2</div>
+            <div class="phase-content">
+                <h2>Core Driving Mechanics <span class="time">2 - 4 Weeks</span></h2>
+                <ul>
+                    <li>Export the car from Blender, then import and rig the 3D model.</li>
+                    <li>Configure Unity Wheel Colliders or a Car Physics package.</li>
+                    <li>Script Mobile UI controls (steering wheel, pedals) using C#.</li>
+                    <li>Implement an dynamic follow camera system.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-number">3</div>
+            <div class="phase-content">
+                <h2>Level & Environment Design <span class="time">3 - 6 Weeks</span></h2>
+                <ul>
+                    <li>Import the custom Blender map and verify scale/collisions.</li>
+                    <li>Refine layout and use Spline tools for smooth roads if needed.</li>
+                    <li>Populate the world with modular buildings, trees, and barriers.</li>
+                    <li>Bake mobile-friendly lighting and optimize with the Universal Render Pipeline (URP).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-number">4</div>
+            <div class="phase-content">
+                <h2>Game Loop & Systems <span class="time">3 - 5 Weeks</span></h2>
+                <ul>
+                    <li>Build lap tracking and invisible checkpoints.</li>
+                    <li>Create Main Menu, UI overlays, and pause screens.</li>
+                    <li>Implement basic Enemy AI to follow splines.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-number">5</div>
+            <div class="phase-content">
+                <h2>Polish, Audio & Graphics <span class="time">2 - 4 Weeks</span></h2>
+                <ul>
+                    <li>Add engine sounds, tire squeals, and collision SFX.</li>
+                    <li>Implement VFX (tire smoke, dust, sparks).</li>
+                    <li>Fine-tune car paint materials and post-processing.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-number">6</div>
+            <div class="phase-content">
+                <h2>Optimization & Publishing <span class="time">2 - 4 Weeks</span></h2>
+                <ul>
+                    <li>Compress textures and lower polygon counts for mobile stability.</li>
+                    <li>Package and test the `.apk` on a physical Android device.</li>
+                    <li>Prepare store assets (icon, screenshots) for Google Play.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="total-time">
+            Total Estimated Timeline: 3 to 6 Months
+            <div style="font-size: 14px; font-weight: 400; margin-top: 5px;">(Based on 15–20 hours per week as a solo
+                dev)</div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('download-btn').addEventListener('click', function () {
+            const element = document.getElementById('flowchart-container');
+            const button = document.getElementById('download-btn');
+
+            button.innerText = '⏳ Generating PDF...';
+            button.disabled = true;
+
+            const opt = {
+                margin: [0, 0, 0, 0],
+                filename: 'CarGame_Development_Workflow.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            // Generate the PDF
+            html2pdf().set(opt).from(element).save().then(() => {
+                button.innerText = '✅ PDF Downloaded!';
+                setTimeout(() => {
+                    button.innerText = '📥 Generate & Download PDF';
+                    button.disabled = false;
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+
+</html>
